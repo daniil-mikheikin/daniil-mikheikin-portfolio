@@ -659,7 +659,7 @@ HEADER EXPERIMENTS PAGE
 ================================*/
 
 #collablearn-casestudy-page {
-    background-color: #F2EFDC;
+    background-color: white;
     color: black;
     font-family: "Satoshi", sans-serif;
     margin: 0;
@@ -706,8 +706,16 @@ HEADER EXPERIMENTS PAGE
     object-fit: contain;
 }
 
+/* The case-study hero brings its own 104px of top padding,
+   so the shared header margin would double the gap here. */
+#collablearn-casestudy-page .header-collablearn {
+    margin-bottom: 0;
+}
+
 #collabLearn-title {
     color: black;
+    font-size: 2em;
+    font-weight: bold;
     max-width: 1189px;
     margin: 48px auto 12px auto;
     padding: 0 16px;
