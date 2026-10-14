@@ -114,6 +114,47 @@ html { scroll-behavior: smooth; }
         row-gap: 24px !important;
     }
 
+    /* The dark "Try the interactive prototype" bar. Its round arrow is a flex
+       item with the default flex-shrink: 1, so when the row ran out of width
+       the circle was compressed to 35px across while its height stayed 56px -
+       an egg, not a circle. Pin it, and trade some of the 44px side padding
+       back to the headline, which only had 196px to wrap into. */
+    #cs-top a[href="#cs-prototype"] {
+        padding: 28px 24px !important;
+        gap: 18px !important;
+    }
+
+    #cs-top a[href="#cs-prototype"] > span:last-child {
+        flex: 0 0 56px !important;
+    }
+
+    /* Problem card 02 carries "grid-column: span 2". Once the grid above is
+       collapsed to a single column that span has nowhere to go, so the browser
+       invents an implicit second column for it. The explicit 1fr track then
+       collapses to 0px and every card WITHOUT the span - 01, 03 and 05 - is
+       laid out 58px wide, one word per line, while 02 and 04 look fine.
+       Dropping the span on narrow screens puts all five in one real column. */
+    #cs-top [style*="grid-column: span 2"] {
+        grid-column: auto !important;
+    }
+
+    /* The three-step research strip is a flex ROW, not a grid, so the rule
+       above never reached it: three cards plus two arrows inside 343px left
+       each card 77px wide, which broke the text to one word per line.
+       Stack it, let each card take its own height, and turn the connecting
+       arrows a quarter turn so they still point from one step to the next. */
+    #cs-top [style*="display: flex; align-items: stretch; gap: 14px;"] {
+        flex-direction: column !important;
+    }
+
+    #cs-top [style*="display: flex; align-items: stretch; gap: 14px;"] > div {
+        flex: 0 0 auto !important;
+    }
+
+    #cs-top [style*="display: flex; align-items: stretch; gap: 14px;"] > span {
+        transform: rotate(90deg);
+    }
+
     /* Two stat tiles still sit side by side on a phone. */
     #cs-research [style*="grid-template-columns: repeat(2, minmax(0, 1fr))"] {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
